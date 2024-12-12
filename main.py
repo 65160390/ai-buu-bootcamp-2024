@@ -27,11 +27,11 @@ from contextlib import asynccontextmanager
 app = FastAPI()
 
 # ข้อมูล token และ channel secret สำหรับ LINE
-ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN", "")
-CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET", "")
+ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN", "9wD10Et2UhaGXiyjtOwInnTTKBewO/2HsvuF/JVO/iL0ZYv4bFDQxl1MgMyC8ioqRYzJ6e1F08O9pzFnyV9x2tJ/uJDS1JeWhWfhlR2AvUyTEa0p00A3rfo4AmK2DhMh4nROwHwEZlJMXjTtouXE7QdB04t89/1O/w1cDnyilFU=")
+CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET", "7660fbd55881a27bf849d65ca255f82c")
 
 # ข้อมูล Gemini api key
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "AIzaSyC6Vba0KC-3GN98WQ55-5Fw0BEfzecyc4w")
 
 # การเชื่อมต่อ และตั้งค่าข้อมูลเพื่อเรียกใช้งาน LINE Messaging API
 configuration = Configuration(access_token=ACCESS_TOKEN)
@@ -240,10 +240,11 @@ gemini = GeminiRAGSystem(
 async def lifespan(app: FastAPI):
     # ข้อมูลตัวอย่างที่ใช้สำหรับ Gemini
     sample_documents = [
-        "จิรภัทร ทำดี คือ ชายหนุ่มที่มีความสามารถในการเขียนโปรแกรมที่มาจากบริษัท ClickNext ที่เป็นบริษัทด้านการพัฒนาโปรแกรมที่มีชื่อเสียง",
-        "จิรภัทร ทำดี มีชื่อเล่นว่า ปาล์ม เกิดวันที่ 25 มกราคม 2555 ที่จังหวัดสระบุรี ศึกษาจบจากมหาวิทยาลัยบูรพา สาขาวิศวกรรมคอมพิวเตอร์",
+        "วชิราภรณ์ ต่อศรี คือ นิสิตชั้นปีที่3 คณะวิทยาการสารสนเทศ สาขาเทคโนโลยีสารสนเทศเพื่ออุตสาหกรรมดิจิทัล มหาวิทยาลัยบูรพา",
+        "วชิราภรณ์ ต่อศรี มีชื่อเล่นว่า เอ๊ะ เกิดวันที่ 31 ธันวาคม 2545 ที่จังหวัดชัยภูมิ ศึกษาจบจากโรงเรียนคอนสารวิทยาคม",
         "งาน BUU-Bootcamp-2024 จัดที่มหาวิทยาลัยบูรพา ในวันที่ 25 มกราคม ปีค.ศ.2024 โดยมีการจัดกิจกรรมต่าง ๆ ที่เกี่ยวข้องกับการพัฒนาซอฟต์แวร์ เวลา 9:00 น. - 16:00 น.",
-        "มหาวิทยาลัยบูรพา สาขาวิชาAI ปีการศึกษา 2565 มีนักศึกษาจำนวน 100 คน มีอาจารย์ที่ปรึกษา 10 คน"
+        "มหาวิทยาลัยบูรพา สาขาวิชาAI ปีการศึกษา 2565 มีนักศึกษาจำนวน 100 คน มีอาจารย์ที่ปรึกษา 10 คน",
+        "ClickNext team AI มีทั้งหมด 8 คน 1.พี่เจ๋ง Developer 2.พี่ปาล์ม Developer 3.พี่ออย Developer 4.พี่ดาว BA 5.พี่ชวน Data Operations 6. 7. 8."
     ]
     
     # เพิ่มข้อมูลตัวอย่างลงใน Gemini
